@@ -116,6 +116,7 @@ apiServer:
     authorization-mode: {{ authorization_modes | join(',') }}
 {% endif %}
     bind-address: "{{ kube_apiserver_bind_address }}"
+    advertise-address: "{{ kube_apiserver_address }}"
 {% if kube_apiserver_enable_admission_plugins | length > 0 %}
     enable-admission-plugins: {{ kube_apiserver_enable_admission_plugins | join(',') }}
 {% endif %}
