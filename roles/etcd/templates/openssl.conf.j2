@@ -25,8 +25,8 @@ authorityKeyIdentifier=keyid:always,issuer
 [alt_names]
 DNS.1 = localhost
 {% for host in groups['etcd'] %}
-DNS.{{ counter["dns"] }} = {{ hostvars[host]['ansible_hostname'] }}{{ increment(counter, 'dns') }}
-DNS.{{ counter["dns"] }} = {{ hostvars[host]['ansible_fqdn'] }}{{ increment(counter, 'dns') }}
+DNS.{{ counter["dns"] }} = {{ host }}{{ increment(counter, 'dns') }}
+DNS.{{ counter["dns"] }} = {{ hostvars[host]['etcd_access_address'] }}{{ increment(counter, 'dns') }}
 {% endfor %}
 {% if apiserver_loadbalancer_domain_name is defined %}
 DNS.{{ counter["dns"] }} = {{ apiserver_loadbalancer_domain_name }}{{ increment(counter, 'dns') }}
